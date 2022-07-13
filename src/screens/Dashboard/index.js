@@ -9,7 +9,7 @@ function Dashboard() {
     };
     return (
         <div className="dashboard-container">
-            {showMainSearch && <SearchInput {...{ handleOptionSelect }} />}
+            <SearchInput {...{ handleOptionSelect }} />
         </div>
     );
 }

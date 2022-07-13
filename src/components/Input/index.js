@@ -2,7 +2,6 @@ import React, { useState, useRef, useEffect, useMemo } from "react";
 import "./input.scss";
 import _ from "lodash";
 import SearchImg from "assets/images/SearchImg";
-import axios from "axios";
 const colorsArr = [
     { name: "red" },
     { name: "green" },
@@ -63,6 +62,7 @@ export function SearchInput({ handleOptionSelect }) {
                         key={i}
                         onClick={() => {
                             console.log(ele);
+                            handleOptionSelect();
                         }}
                         onMouseOver={handleMouseOver}
                     >
@@ -76,10 +76,7 @@ export function SearchInput({ handleOptionSelect }) {
         <div className="search">
             <div className="search-input-container">
                 <span className="search-image">
-                    <SearchImg
-                        size={45}
-                        color={inputFocused ? "#C0C0C0" : "#808080"}
-                    />
+                    <SearchImg color={inputFocused ? "#C0C0C0" : "#808080"} />
                 </span>
                 <input
                     id="search-input"

@@ -3,9 +3,16 @@
     top: 30%;
     left: 50%;
     transform: translate(-50%);
+    animation-name: searchContainerAnimation;
+    animation-duration: 1s;
+    animation-direction: normal;
+    transition-timing-function: ease-in;
     .search-input-container {
         position: relative;
         width: 600px;
+        animation-name: searchInputAnimations;
+        animation-direction: normal;
+        animation-duration: 1s;
         background-color: #fff;
         height: 100px;
         border-radius: 5px;
@@ -25,6 +32,10 @@
             font-weight: 400;
             outline: none;
             padding-left: 4rem;
+            animation-name: iptAnimations;
+            animation-duration: 1s;
+            animation-direction: normal;
+            transition-timing-function: ease-in;
         }
         input[type="search"]::-webkit-search-cancel-button {
             -webkit-appearance: none;
@@ -45,7 +56,11 @@
         .search-image {
             position: absolute;
             left: 6%;
-            top: 1.6rem;
+            top: 30%;
+            width: 40px;
+            animation-name: searchImageAnimation;
+            animation-duration: 1s;
+            animation-timing-function: ease-in;
         }
     }
     .search-list {
@@ -75,5 +90,50 @@
                 border-radius: 0 0 5px 5px;
             }
         }
+    }
+}
+
+@keyframes searchContainerAnimation {
+    from {
+        top: 30%;
+        left: 50%;
+        transform: translate(-50%);
+        display: block;
+    }
+    to {
+        position: absolute;
+        top: 10px;
+        left: 80%;
+        display: none !important;
+    }
+}
+
+@keyframes searchInputAnimations {
+    from {
+        width: 600px;
+    }
+    to {
+        width: 200px;
+        background-color: rgba(255, 255, 255, 0.1);
+        box-shadow: unset;
+        height: 60px;
+    }
+}
+
+@keyframes searchImageAnimation {
+    from {
+        width: 40px;
+    }
+    to {
+        width: 25px;
+    }
+}
+@keyframes iptAnimations {
+    from {
+        font-size: 32px;
+    }
+    to {
+        font-size: 12px;
+        padding-left: 2rem;
     }
 }
