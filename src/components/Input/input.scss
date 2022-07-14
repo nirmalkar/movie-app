@@ -66,6 +66,7 @@
     .search-list {
         width: 600px;
         max-height: 40vh;
+        min-height: 7vh;
         background-color: #fff;
         box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
         position: absolute;
@@ -89,6 +90,15 @@
             &:last-child {
                 border-radius: 0 0 5px 5px;
             }
+        }
+        .list-no-data {
+            font-size: 20px;
+            font-weight: 600;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #b6b8bf;
         }
     }
 }

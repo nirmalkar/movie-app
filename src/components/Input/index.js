@@ -1,30 +1,18 @@
-import React, { useState, useRef, useEffect, useMemo } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "./input.scss";
-import _ from "lodash";
 import SearchImg from "assets/images/SearchImg";
-const colorsArr = [
-    { name: "red" },
-    { name: "green" },
-    { name: "yellow" },
-    { name: "violet" },
-    { name: "indigo" },
-    { name: "blue" },
-    { name: "orange" },
-    { name: "magenta" },
-    { name: "forest green" },
-    { name: "ocean blue" },
-    { name: "sky blue" },
-    { name: "magenta" },
-];
 
-export function Input() {
-    return <input>Input One</input>;
+export function Input({ colorsArr }) {
+    return <input type="text" />;
 }
-export function SearchInput({ handleOptionSelect }) {
-    const { debounce } = _;
+export function SearchInput({
+    handleOptionSelect,
+    debouncedResults,
+    movies,
+    loading,
+}) {
     const inputRef = useRef(null);
     const [inputFocused, setInputFocused] = useState(false);
-    const [colors, setColors] = useState(colorsArr);
     const handleInputFocus = (e) => {
         setInputFocused((prev) => !prev);
     };
@@ -39,36 +27,31 @@ export function SearchInput({ handleOptionSelect }) {
         };
     });
 
-    const handleSearchInputChange = async (e) => {
-        const string = e.target.value.toLowerCase();
-        const filteredColorArr = colorsArr.filter((ele) =>
-            ele.name.toLowerCase().includes(string)
-        );
-        setColors(filteredColorArr);
-    };
     const handleMouseOver = () => {
         inputRef.current.blur();
     };
-
-    const debouncedResults = useMemo(() => {
-        return debounce(handleSearchInputChange, 1000);
-    }, []);
-
+    console.log(movies);
     const GetList = () => {
+        if (movies === null && loading === false) return;
         return (
             <div className="search-list">
-                {colors.map((ele, i) => (
-                    <li
-                        key={i}
-                        onClick={() => {
-                            console.log(ele);
-                            handleOptionSelect();
-                        }}
-                        onMouseOver={handleMouseOver}
-                    >
-                        {ele.name}
-                    </li>
-                ))}
+                {!movies?.length ? (
+                    <div className="list-no-data">No data available</div>
+                ) : null}
+                {loading
+                    ? "Loading..."
+                    : movies?.map((ele, i) => (
+                          <li
+                              key={i}
+                              onClick={() => {
+                                  console.log(ele);
+                                  handleOptionSelect();
+                              }}
+                              onMouseOver={handleMouseOver}
+                          >
+                              {ele.Title}
+                          </li>
+                      ))}
             </div>
         );
     };
@@ -84,7 +67,7 @@ export function SearchInput({ handleOptionSelect }) {
                     type="search"
                     onFocus={handleInputFocus}
                     onBlur={handleInputFocus}
-                    placeholder="Search a place"
+                    placeholder="Search a movie"
                     onChange={debouncedResults}
                 />
                 <GetList />
