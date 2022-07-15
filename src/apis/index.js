@@ -7,3 +7,10 @@ export const getMovies = async (name) => {
     );
     return data;
 };
+
+export const getMovie = async (id) => {
+    const { data } = await axios.get(
+        `${BASE_URL}/?i=${id}&apikey=${process.env.REACT_APP_OMDB_API_KEY}&type=movie`
+    );
+    return data;
+};
