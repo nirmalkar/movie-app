@@ -11,7 +11,7 @@ function Nav({ showMainSearch }) {
     };
     return (
         <div className="nav-container">
-            <div class="nav-input">
+            <div className="nav-input">
                 {showMainSearch ? null : getNavSearchInput()}
             </div>
         </div>

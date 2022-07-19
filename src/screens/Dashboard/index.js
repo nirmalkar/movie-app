@@ -1,23 +1,26 @@
 import React, { useEffect, useMemo, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { SearchInput } from "../../components/Input";
-import { getMovie, getMovies } from "apis/index";
+import { searchMovies, getMovieDetails } from "appRedux/movie/actions";
 import _ from "lodash";
 import "./dashboard.scss";
 import Nav from "components/Nav";
 
 function Dashboard() {
     const { debounce } = _;
+    const dispatch = useDispatch();
     const [showMainSearch, setShowMainSearch] = useState(true);
-    const [movies, setMovies] = useState(null);
-    const [loading, setLoading] = useState(false);
-    const [currMovie, setCurrMovie] = useState({});
+    const { moviesArr, loading: moviesLoading } = useSelector(
+        (state) => state?.movies
+    );
+    const { currentMovie, loading: movieLoading } = useSelector(
+        (state) => state.currMovie
+    );
+
     const handleSearchInputChange = async (e) => {
-        setLoading(true);
         try {
             const string = e.target.value.toLowerCase();
-            const data = await getMovies(string);
-            setMovies(data.Search);
-            setLoading(false);
+            dispatch(searchMovies(string));
         } catch (e) {}
     };
 
@@ -35,12 +38,9 @@ function Dashboard() {
     }, []);
     const handleOptionSelect = async (data) => {
         const { imdbID } = data;
-        console.log(data, imdbID);
         try {
             if (imdbID) {
-                const movie = await getMovie(imdbID);
-                console.log(movie, "this is the movie");
-                setCurrMovie(movie);
+                dispatch(getMovieDetails(imdbID));
             }
         } catch (e) {
             console.log(e);
@@ -48,13 +48,13 @@ function Dashboard() {
         setShowMainSearch(false);
     };
     const CurrentMovie = () => {
-        if (Object.keys(currMovie).length) {
+        if (Object.keys(currentMovie).length) {
             return (
-                <>
-                    <div>Title: {currMovie.Title}</div>
-                    <div>Description: {currMovie.Plot}</div>
-                    <div>Awards: {currMovie.Awards}</div>
-                </>
+                <div className="current-movie-container">
+                    <div>Title: {currentMovie.Title}</div>
+                    <div>Description: {currentMovie.Plot}</div>
+                    <div>Awards: {currentMovie.Awards}</div>
+                </div>
             );
         }
     };
@@ -64,11 +64,10 @@ function Dashboard() {
             <SearchInput
                 {...{
                     handleOptionSelect,
-                    getMovies,
                     handleSearchInputChange,
                     debouncedResults,
-                    movies,
-                    loading,
+                    movies: moviesArr,
+                    loading: moviesLoading,
                     showMainSearch,
                 }}
             />
