@@ -92,12 +92,15 @@ export const SearchInput = React.memo(
     }
 );
 
-export const SearchInputNav = React.memo(({ placeholder }) => {
-    return (
-        <input
-            placeholder={placeholder}
-            type="search"
-            className="search-input-nav"
-        />
-    );
-});
+export const SearchInputNav = React.memo(
+    ({ placeholder, handleNormalInputClick }) => {
+        return (
+            <input
+                placeholder={placeholder}
+                onClick={handleNormalInputClick}
+                type="search"
+                className="search-input-nav"
+            />
+        );
+    }
+);

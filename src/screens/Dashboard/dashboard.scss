@@ -1,3 +1,23 @@
 .hidden {
     display: none;
 }
+
+.current-movie-container {
+    position: relative;
+    width: 100vw;
+    height: calc(100vh - 60px);
+    display: flex;
+    .current-movie-title {
+        font-size: 42px;
+        letter-spacing: 2px;
+        margin: 5% auto;
+        text-shadow: 4px 4px rgb(238, 236, 236);
+        text-transform: uppercase;
+    }
+    .current-movie-poster {
+        position: absolute;
+        top: 25rem;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+}

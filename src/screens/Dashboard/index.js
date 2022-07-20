@@ -1,21 +1,20 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { SearchInput } from "../../components/Input";
 import { searchMovies, getMovieDetails } from "appRedux/movie/actions";
+import { mainSearchShow } from "appRedux/misc/actions";
 import _ from "lodash";
 import "./dashboard.scss";
 import Nav from "components/Nav";
+import CurrentMovie from "./components";
 
 function Dashboard() {
     const { debounce } = _;
     const dispatch = useDispatch();
-    const [showMainSearch, setShowMainSearch] = useState(true);
     const { moviesArr, loading: moviesLoading } = useSelector(
         (state) => state?.movies
     );
-    const { currentMovie, loading: movieLoading } = useSelector(
-        (state) => state.currMovie
-    );
+    const { showMainSearch } = useSelector((state) => state.mainSearch);
 
     const handleSearchInputChange = async (e) => {
         try {
@@ -45,18 +44,7 @@ function Dashboard() {
         } catch (e) {
             console.log(e);
         }
-        setShowMainSearch(false);
-    };
-    const CurrentMovie = () => {
-        if (Object.keys(currentMovie).length) {
-            return (
-                <div className="current-movie-container">
-                    <div>Title: {currentMovie.Title}</div>
-                    <div>Description: {currentMovie.Plot}</div>
-                    <div>Awards: {currentMovie.Awards}</div>
-                </div>
-            );
-        }
+        dispatch(mainSearchShow(false));
     };
     return (
         <div className="dashboard-container">
