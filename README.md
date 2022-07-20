@@ -1,3 +1,1 @@
-# The Touring App
-
-experience smart touring!
+# Search a movie
