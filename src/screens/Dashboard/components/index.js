@@ -3,14 +3,13 @@ import React from "react";
 import { useSelector } from "react-redux";
 
 function CurrentMovie() {
-    const { currentMovie, loading } = useSelector((state) => state.currMovie);
-    console.log(currentMovie);
+    const { currentMovie } = useSelector((state) => state.currMovie);
     if (Object.keys(currentMovie).length) {
         return (
             <div className="current-movie-container">
                 <div className="current-movie-title">{currentMovie.Title}</div>
-                <div class="card">
-                    <Card image={currentMovie.Poster} height={300} width={300}>
+                <div className="card">
+                    <Card image={currentMovie.Poster} width={300}>
                         <div className="title">
                             Title:{" "}
                             <span className="value">{currentMovie.Title}</span>

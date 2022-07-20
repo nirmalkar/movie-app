@@ -27,7 +27,7 @@ function Nav({ showMainSearch }) {
         <div className="nav-container">
             {showMainSearch ? null : (
                 <div className="nav-input" onClick={handleNormalInputClick}>
-                    <div class="nav-input-search-icon">
+                    <div className="nav-input-search-icon">
                         <SearchImg size="24" color={"#808080"} />
                     </div>
                     {getNavSearchInput()}

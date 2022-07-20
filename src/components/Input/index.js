@@ -97,6 +97,7 @@ export const SearchInput = React.memo(
 export const SearchInputNav = React.memo(({ placeholder, movieString }) => {
     return (
         <input
+            onChange={(e) => console.log(e.target.value)}
             placeholder={placeholder}
             type="text"
             value={movieString}

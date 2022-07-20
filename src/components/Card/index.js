@@ -5,11 +5,11 @@ function Card({ children, image, height, width }) {
     return (
         <div className="card-container" style={{ height, width }}>
             {image && (
-                <div class="card-image">
-                    <img src={image} alt="" srcset="" />
+                <div className="card-image">
+                    <img src={image} alt="" srcSet="" />
                 </div>
             )}
-            <div class="card-body">{children}</div>
+            <div className="card-body">{children}</div>
         </div>
     );
 }
