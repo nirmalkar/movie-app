@@ -5,7 +5,7 @@ import { GET_MOVIE_DETAILS_REQUEST } from "constants/actionsTypes";
 import { GET_MOVIE_DETAILS_SUCCESS } from "constants/actionsTypes";
 import { GET_MOVIE_DETAILS_FAILURE } from "constants/actionsTypes";
 
-const moviesReducer = (state = { moviesArr: [] }, action) => {
+const moviesReducer = (state = { moviesArr: [], movieString: "" }, action) => {
     switch (action.type) {
         case SEARCH_MOVIE_REQUEST:
             return {
@@ -17,7 +17,8 @@ const moviesReducer = (state = { moviesArr: [] }, action) => {
             return {
                 ...state,
                 loading: false,
-                moviesArr: action.payload.Search,
+                moviesArr: action.payload.data.Search,
+                movieString: action.payload.movieString,
             };
         case SEARCH_MOVIE_FAILURE:
             return {

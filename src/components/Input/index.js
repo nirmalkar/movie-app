@@ -20,8 +20,10 @@ export const SearchInput = React.memo(
         };
 
         useEffect(() => {
-            inputRef.current.focus();
-        }, []);
+            setTimeout(() => {
+                inputRef.current.focus();
+            }, 800);
+        }, [showMainSearch]);
 
         useEffect(() => {
             return () => {
@@ -92,15 +94,13 @@ export const SearchInput = React.memo(
     }
 );
 
-export const SearchInputNav = React.memo(
-    ({ placeholder, handleNormalInputClick }) => {
-        return (
-            <input
-                placeholder={placeholder}
-                onClick={handleNormalInputClick}
-                type="search"
-                className="search-input-nav"
-            />
-        );
-    }
-);
+export const SearchInputNav = React.memo(({ placeholder, movieString }) => {
+    return (
+        <input
+            placeholder={placeholder}
+            type="text"
+            value={movieString}
+            className="search-input-nav"
+        />
+    );
+});

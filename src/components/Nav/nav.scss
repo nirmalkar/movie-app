@@ -1,18 +1,26 @@
 .nav-container {
     position: sticky;
+    position: relative;
     top: 0;
     width: 100vw;
     height: 60px;
     // background-color: rgba($color: rgb(6, 6, 6), $alpha: 0.5);
     // box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
     .nav-input {
-        position: absolute;
-        top: 50%;
+        position: fixed;
+        top: 2rem;
         left: 80%;
         transform: translate(-50%, -50%);
         width: 200px;
+        z-index: 2;
     }
 }
 .hidden {
     display: none;
+}
+
+.nav-input-search-icon {
+    position: absolute;
+    top: 12px;
+    left: 12px;
 }

@@ -2,12 +2,13 @@ import { SearchInputNav } from "components/Input";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { mainSearchShow } from "appRedux/misc/actions";
+import SearchImg from "assets/images/SearchImg";
 import "./nav.scss";
 
 function Nav({ showMainSearch }) {
     const placeholder = "Search a movie";
     const dispatch = useDispatch();
-    // const state = useSelector((state) => state);
+    const { movieString } = useSelector((state) => state.movies);
     const handleNormalInputClick = () =>
         dispatch(mainSearchShow(!showMainSearch));
     const getNavSearchInput = () => {
@@ -17,16 +18,21 @@ function Nav({ showMainSearch }) {
                     isNav: true,
                     showMainSearch,
                     placeholder,
-                    handleNormalInputClick,
+                    movieString,
                 }}
             />
         );
     };
     return (
         <div className="nav-container">
-            <div className="nav-input">
-                {showMainSearch ? null : getNavSearchInput()}
-            </div>
+            {showMainSearch ? null : (
+                <div className="nav-input" onClick={handleNormalInputClick}>
+                    <div class="nav-input-search-icon">
+                        <SearchImg size="24" color={"#808080"} />
+                    </div>
+                    {getNavSearchInput()}
+                </div>
+            )}
         </div>
     );
 }

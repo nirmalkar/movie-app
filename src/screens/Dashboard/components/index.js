@@ -1,3 +1,4 @@
+import Card from "components/Card";
 import React from "react";
 import { useSelector } from "react-redux";
 
@@ -8,15 +9,48 @@ function CurrentMovie() {
         return (
             <div className="current-movie-container">
                 <div className="current-movie-title">{currentMovie.Title}</div>
-                <img
-                    className="current-movie-poster"
-                    src={currentMovie.Poster}
-                    alt=""
-                    srcSet=""
-                />
-                {/* <div>Title: {currentMovie.Title}</div>
-                <div>Description: {currentMovie.Plot}</div>
-                <div>Awards: {currentMovie.Awards}</div> */}
+                <div class="card">
+                    <Card image={currentMovie.Poster} height={300} width={300}>
+                        <div className="title">
+                            Title:{" "}
+                            <span className="value">{currentMovie.Title}</span>
+                        </div>
+                        <div className="title">
+                            Genre:{" "}
+                            <span className="value">{currentMovie.Genre}</span>
+                        </div>
+                        <div className="title">
+                            IMDB Rating:{" "}
+                            <span className="value">
+                                {currentMovie.imdbRating}
+                            </span>
+                        </div>
+                        <div className="title">
+                            Released Year:{" "}
+                            <span className="value">
+                                {currentMovie.Released}
+                            </span>
+                        </div>
+                        <div className="title">
+                            Runtime:{" "}
+                            <span className="value">
+                                {currentMovie.Runtime}
+                            </span>
+                        </div>
+                        <div className="title">
+                            Description:{" "}
+                            <span className="value">{currentMovie.Plot}</span>
+                        </div>
+                        <div className="title">
+                            Awards:{" "}
+                            <span className="value">{currentMovie.Awards}</span>
+                        </div>
+                        <div className="title">
+                            Plot:{" "}
+                            <span className="value">{currentMovie.Plot}</span>
+                        </div>
+                    </Card>
+                </div>
             </div>
         );
     }

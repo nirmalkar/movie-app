@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { SearchInput } from "../../components/Input";
 import { searchMovies, getMovieDetails } from "appRedux/movie/actions";
@@ -23,14 +23,19 @@ function Dashboard() {
         } catch (e) {}
     };
 
-    if (showMainSearch === false) {
-        setTimeout(() => {
-            const ele = document.querySelector(".search-WA");
-            ele.style.display = "none";
-        }, 1000);
-    } else {
-        console.log("abc");
-    }
+    useEffect(() => {
+        if (showMainSearch === false) {
+            setTimeout(() => {
+                const ele = document.querySelector(".search-WA");
+                ele.style.display = "none";
+            }, 1000);
+        } else {
+            setTimeout(() => {
+                const ele = document.querySelector(".search");
+                ele.style.display = "block";
+            }, 100);
+        }
+    }, [showMainSearch]);
 
     const debouncedResults = useMemo(() => {
         return debounce(handleSearchInputChange, 300);

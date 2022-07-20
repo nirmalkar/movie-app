@@ -7,17 +7,32 @@
     width: 100vw;
     height: calc(100vh - 60px);
     display: flex;
+    flex-direction: column;
     .current-movie-title {
         font-size: 42px;
         letter-spacing: 2px;
-        margin: 5% auto;
+        margin: 2% auto;
         text-shadow: 4px 4px rgb(238, 236, 236);
         text-transform: uppercase;
     }
     .current-movie-poster {
         position: absolute;
-        top: 25rem;
-        left: 50%;
-        transform: translate(-50%, -50%);
+        // top: 22rem;
+        // left: 50%;
+        // transform: translate(-50%, -50%);
+    }
+    .card {
+        display: flex;
+        justify-content: center;
+        .title {
+            font-weight: 600;
+            margin: 1rem 0;
+            .value {
+                font-weight: 300;
+            }
+        }
+        .title:last-child {
+            padding-bottom: 2rem;
+        }
     }
 }

@@ -14,7 +14,10 @@ export const searchMovies = (str) => async (dispatch) => {
         const { data } = await axios.get(
             `${BASE_URL}/?s=${str}&apikey=${process.env.REACT_APP_OMDB_API_KEY}&type=movie`
         );
-        dispatch({ type: SEARCH_MOVIE_SUCCESS, payload: data });
+        dispatch({
+            type: SEARCH_MOVIE_SUCCESS,
+            payload: { data, movieString: str },
+        });
     } catch (e) {
         dispatch({ type: SEARCH_MOVIE_FAILURE, payload: e.message });
     }
