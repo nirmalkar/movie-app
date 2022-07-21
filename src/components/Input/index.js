@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./input.scss";
 import SearchImg from "assets/images/SearchImg";
+import CrossButton from "components/crossButton";
 
 export function Input({ colorsArr }) {
     return <input type="text" />;
@@ -12,6 +13,7 @@ export const SearchInput = React.memo(
         movies,
         loading,
         showMainSearch,
+        handleCrossButtonClick,
     }) => {
         const inputRef = useRef(null);
         const [inputFocused, setInputFocused] = useState(false);
@@ -60,6 +62,13 @@ export const SearchInput = React.memo(
         });
         return (
             <div className={showMainSearch ? "search" : "search-WA"}>
+                {showMainSearch && (
+                    <div class="cross-button">
+                        <CrossButton
+                            handleCrossButtonClick={handleCrossButtonClick}
+                        />
+                    </div>
+                )}
                 <div
                     className={
                         showMainSearch

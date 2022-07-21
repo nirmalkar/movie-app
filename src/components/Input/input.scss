@@ -4,6 +4,12 @@
     left: 50%;
     transform: translate(-50%);
     z-index: 1;
+    .cross-button {
+        position: absolute;
+        right: -0.4rem;
+        top: -0.6rem;
+        z-index: 2;
+    }
 }
 .search-WA {
     @extend .search;

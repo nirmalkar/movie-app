@@ -52,6 +52,9 @@ function Dashboard() {
         }
         dispatch(mainSearchShow(false));
     };
+    const handleCrossButtonClick = () => {
+        dispatch(mainSearchShow(false));
+    };
     return (
         <div className="dashboard-container">
             <Nav {...{ showMainSearch }} />
@@ -63,6 +66,7 @@ function Dashboard() {
                     movies: moviesArr,
                     loading: moviesLoading,
                     showMainSearch,
+                    handleCrossButtonClick,
                 }}
             />
             <CurrentMovie />
