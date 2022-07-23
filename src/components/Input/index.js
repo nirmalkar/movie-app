@@ -62,7 +62,7 @@ export const SearchInput = React.memo(
         });
         return (
             <div className={showMainSearch ? "search" : "search-WA"}>
-                {showMainSearch && (
+                {showMainSearch && !!movies.length && (
                     <div class="cross-button">
                         <CrossButton
                             handleCrossButtonClick={handleCrossButtonClick}
