@@ -18,7 +18,7 @@ function CrossButton({ fontSize, color, size, handleCrossButtonClick }) {
                 alignItems: "center",
             }}
         >
-            <div class="cross">X</div>
+            <div className="cross">X</div>
         </button>
     );
 }
