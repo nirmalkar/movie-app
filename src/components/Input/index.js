@@ -36,6 +36,11 @@ export const SearchInput = React.memo(
         const handleMouseOver = () => {
             inputRef.current.blur();
         };
+        const handleKeyDown = (e, ele) => {
+            if (e.key === "Enter") {
+                handleOptionSelect(ele);
+            }
+        };
 
         const GetList = React.memo(() => {
             if (!movies?.length) return;
@@ -49,8 +54,10 @@ export const SearchInput = React.memo(
                     ) : (
                         movies?.map((ele, i) => (
                             <li
+                                tabIndex={i + 2}
                                 key={i}
                                 onClick={() => handleOptionSelect(ele)}
+                                onKeyDown={(e) => handleKeyDown(e, ele)}
                                 onMouseOver={handleMouseOver}
                             >
                                 {ele.Title}
@@ -89,6 +96,7 @@ export const SearchInput = React.memo(
                         className={
                             showMainSearch ? "search-input" : "search-input-WA"
                         }
+                        tabIndex={2}
                         ref={inputRef}
                         type="search"
                         onFocus={handleInputFocus}
