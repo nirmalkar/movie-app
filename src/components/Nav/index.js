@@ -11,10 +11,16 @@ function Nav({ showMainSearch }) {
     const { movieString } = useSelector((state) => state.movies);
     const handleNormalInputClick = () =>
         dispatch(mainSearchShow(!showMainSearch));
+    const onKeyDownEvents = (e) => {
+        if (e.key === "Enter") {
+            dispatch(mainSearchShow(!showMainSearch));
+        }
+    };
     const getNavSearchInput = () => {
         return (
             <SearchInputNav
                 {...{
+                    onKeyDownEvents,
                     isNav: true,
                     showMainSearch,
                     placeholder,
