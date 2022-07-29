@@ -41,7 +41,6 @@ export const SearchInput = React.memo(
                 handleOptionSelect(ele);
             }
         };
-
         const GetList = React.memo(() => {
             if (!movies?.length) return;
             return (
@@ -54,7 +53,7 @@ export const SearchInput = React.memo(
                     ) : (
                         movies?.map((ele, i) => (
                             <li
-                                tabIndex={i + 2}
+                                tabIndex={0}
                                 key={i}
                                 onClick={() => handleOptionSelect(ele)}
                                 onKeyDown={(e) => handleKeyDown(e, ele)}
@@ -96,7 +95,7 @@ export const SearchInput = React.memo(
                         className={
                             showMainSearch ? "search-input" : "search-input-WA"
                         }
-                        tabIndex={2}
+                        tabIndex="0"
                         ref={inputRef}
                         type="search"
                         onFocus={handleInputFocus}
